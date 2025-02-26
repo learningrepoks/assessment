@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: mytestapp
-  name: mytestapp
+    app: mytestapp-frontend
+  name: mytestapp-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mytestapp
+      app: mytestapp-frontend
   template:
     metadata:
       labels:
-        app: mytestapp
+        app: mytestapp-frontend
     spec:
       containers:
       - image: nginx

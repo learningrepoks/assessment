@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: myservice 
+  name: myservice-frontend
   labels:
-    app: mytestapp 
+    app: mytestapp-frontend
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: mytestapp
+    app: mytestapp-frontend

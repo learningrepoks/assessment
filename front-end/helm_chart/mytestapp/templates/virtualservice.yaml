@@ -1,12 +1,12 @@
 apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
-  name: mytestapp-vs 
+  name: mytestapp-vs-frontend 
 spec:
   hosts:
   - "*"
   gateways:
-  - mytestapp-gateway
+  - mytestapp-gateway-frontend
   http:
   - match:
     - uri:
