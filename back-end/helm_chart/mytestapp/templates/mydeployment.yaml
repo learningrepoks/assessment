@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mytestapp
+  name: mytestapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mytestapp
+  template:
+    metadata:
+      labels:
+        app: mytestapp
+    spec:
+      initContainers:
+      - name: init-myservice
+        image: busybox:1.28
+        command: ['sh', '-c', "until nslookup my-db-test.io; do echo waiting for myservice; sleep 2; done"]
+      containers:
+      - image: nginx
+        name: "{{ .Values.image.repository }}:{{ .Values.image.tag  }}"
+        env:
+        - name: SPRING_POSTGRES_USERNAME 
+          value: "myapplication"
+        - name: SPRING_POSTGRES_PASSWORD
+          value: "M3P@ssw0rd!"
+        - name: SPRING_POSTGRES_URL 
+          value: "my-db-test.io"
+
+
+
